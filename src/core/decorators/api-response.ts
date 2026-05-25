@@ -60,7 +60,7 @@ export function APIResponse(props: string | APIResponseProps = {}) {
           if (error.message) finalMessage = error.message;
         }
 
-        console.error(`[IkedaDev Handler Log] Error en ${propertyKey}:`, error);
+        console.error(`[Kropy Handler Log] Error en ${propertyKey}:`, error);
 
         return ApiResponse.error(c, finalMessage, null, errorStatus);
       }
