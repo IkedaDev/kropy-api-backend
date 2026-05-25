@@ -1,17 +1,22 @@
 import { Criteria, FilterOperator } from '@core/criteria/criteria.js';
+import { Tenant } from '@modules/tenants/domain/entities/tenant.entity.js';
 import { TenantCMSRepository } from '@modules/tenants/repository/tenant-cms.repository.js';
 import { TenantFindBy } from '@modules/tenants/use-cases/tenant-find-by.use-case.js';
 import type { MiddlewareHandler } from 'hono';
 
-export const tenantResolver = (): MiddlewareHandler => {
+export type TenantContextEnv = {
+    Variables: {
+        tenant: Tenant;
+    }
+};
+
+export const tenantResolver = (): MiddlewareHandler<TenantContextEnv> => {
     return async (c, next) => {
         let tenantIdentifier = c.req.header('X-Tenant-Slug');
         if (!tenantIdentifier) {
             const host = c.req.header('host') || '';
-            tenantIdentifier = host.replace('www.', '');
+            tenantIdentifier = host.replace('www.', '').split(':')[0];
         }
-
-        tenantIdentifier = 'kropy'
 
         if (!tenantIdentifier) {
             return c.json({ error: 'Falta el identificador del Tenant' }, 400);

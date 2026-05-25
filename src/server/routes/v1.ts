@@ -1,5 +1,6 @@
 import { ApiResponse } from "@core/models/api-response.model.js";
 import { OpenAPIHono } from "@hono/zod-openapi";
+import { ecommerceSettingHandlers, ecommerceSettingRoutes } from "@modules/ecommerce/settings/presentation/ecommerce-setting.routes.js";
 import {
   healthHandlers,
   healthRouter,
@@ -29,5 +30,8 @@ v1.use("/*", tenantResolver());
 v1.openapi(healthRouter.healthCheck, healthHandlers.healthCheck);
 
 v1.openapi(settingRoutes.findOne, settingHandlers.findOne)
+
+
+v1.openapi(ecommerceSettingRoutes.findOne, ecommerceSettingHandlers.findOne)
 
 export default v1;
