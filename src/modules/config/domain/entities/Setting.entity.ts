@@ -1,11 +1,12 @@
-import { Tenant } from "@core/models/business/tenant.entity.js"
+import { Tenant } from "@modules/tenants/domain/entities/tenant.entity.js"
 
-interface ContactInfo {
+
+export class ContactInfo {
     phone?: string
     email?: string
     address?: string
 }
-interface SocialLinks {
+export class SocialLinks {
     whatsapp?: string
     facebook?: string
     instagram?: string
@@ -19,7 +20,7 @@ interface SettingProps {
     slug?: string
     logo?: string
     favicon?: string
-    concactInfo: ContactInfo
+    contactInfo: ContactInfo
     socialLinks: SocialLinks
     updatedAt: string
     createdAt: string
@@ -33,7 +34,7 @@ export class Setting {
     public slug?: string
     public logo?: string
     public favicon?: string
-    public concactInfo: ContactInfo
+    public contactInfo: ContactInfo
     public socialLinks: SocialLinks
     public updatedAt: string
     public createdAt: string
@@ -45,7 +46,7 @@ export class Setting {
         this.slug = props.slug
         this.logo = props.logo
         this.favicon = props.favicon
-        this.concactInfo = props.concactInfo
+        this.contactInfo = props.contactInfo
         this.socialLinks = props.socialLinks
         this.updatedAt = props.updatedAt
         this.createdAt = props.createdAt

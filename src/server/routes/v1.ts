@@ -6,6 +6,7 @@ import {
 } from "@modules/health/presentation/health.routes.js";
 
 import { generalLimiter } from "@server/middlewares/rate-limit.middleware.js";
+import { tenantResolver } from "@server/middlewares/tenant-resolver.middleware.js";
 
 const v1 = new OpenAPIHono({
   defaultHook: (result, c) => {
@@ -21,6 +22,7 @@ const v1 = new OpenAPIHono({
 });
 
 v1.use("/*", generalLimiter);
+v1.use("/*", tenantResolver());
 
 // Health
 v1.openapi(healthRouter.healthCheck, healthHandlers.healthCheck);
