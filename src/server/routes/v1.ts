@@ -1,5 +1,6 @@
 import { ApiResponse } from "@core/models/api-response.model.js";
 import { OpenAPIHono } from "@hono/zod-openapi";
+import { brandHandlers, brandRoutes } from "@modules/ecommerce/brand/presentation/brand.routes.js";
 import { categoryHandlers, categoryRoutes } from "@modules/ecommerce/category/presentation/category.routes.js";
 import { ecommerceSettingHandlers, ecommerceSettingRoutes } from "@modules/ecommerce/settings/presentation/ecommerce-setting.routes.js";
 import {
@@ -35,6 +36,7 @@ v1.openapi(settingRoutes.findOne, settingHandlers.findOne)
 
 v1.openapi(ecommerceSettingRoutes.findOne, ecommerceSettingHandlers.findOne)
 v1.openapi(categoryRoutes.findBy, categoryHandlers.findBy)
+v1.openapi(brandRoutes.findBy, brandHandlers.findBy)
 
 
 
