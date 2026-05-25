@@ -1,5 +1,6 @@
 import { ApiResponse } from "@core/models/api-response.model.js";
 import { OpenAPIHono } from "@hono/zod-openapi";
+import { categoryHandlers, categoryRoutes } from "@modules/ecommerce/category/presentation/category.routes.js";
 import { ecommerceSettingHandlers, ecommerceSettingRoutes } from "@modules/ecommerce/settings/presentation/ecommerce-setting.routes.js";
 import {
   healthHandlers,
@@ -33,5 +34,8 @@ v1.openapi(settingRoutes.findOne, settingHandlers.findOne)
 
 
 v1.openapi(ecommerceSettingRoutes.findOne, ecommerceSettingHandlers.findOne)
+v1.openapi(categoryRoutes.findBy, categoryHandlers.findBy)
+
+
 
 export default v1;
