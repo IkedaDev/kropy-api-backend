@@ -4,6 +4,7 @@ import {
   healthHandlers,
   healthRouter,
 } from "@modules/health/presentation/health.routes.js";
+import { settingHandlers, settingRoutes } from "@modules/settings/presentation/setting.routes.js";
 
 import { generalLimiter } from "@server/middlewares/rate-limit.middleware.js";
 import { tenantResolver } from "@server/middlewares/tenant-resolver.middleware.js";
@@ -26,5 +27,7 @@ v1.use("/*", tenantResolver());
 
 // Health
 v1.openapi(healthRouter.healthCheck, healthHandlers.healthCheck);
+
+v1.openapi(settingRoutes.findOne, settingHandlers.findOne)
 
 export default v1;

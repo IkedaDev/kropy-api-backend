@@ -5,10 +5,9 @@ import type { MiddlewareHandler } from 'hono';
 
 export const tenantResolver = (): MiddlewareHandler => {
     return async (c, next) => {
-        // 1. Intentar resolver por header personalizado o por el host de origen
         let tenantIdentifier = c.req.header('X-Tenant-Slug');
         if (!tenantIdentifier) {
-            const host = c.req.header('host') || ''; // ej: "midominio.cl"
+            const host = c.req.header('host') || '';
             tenantIdentifier = host.replace('www.', '');
         }
 
