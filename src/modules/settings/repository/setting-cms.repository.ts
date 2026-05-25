@@ -5,7 +5,7 @@ import { Setting } from "../domain/entities/setting.entity.js";
 export class SettingCMSRepository extends CmsBaseRepository<Setting> implements SettingRepository {
     protected readonly endpoint = "pages";
     protected readonly defaultSort = "id";
-    protected readonly fieldMapping = { id: "id" };
+    protected readonly fieldMapping = { tenantId: "tenant.id" };
 
     protected mapToDomain(plain: any): Setting {
         return new Setting({

@@ -58,7 +58,9 @@ export abstract class CmsBaseRepository<T> {
             encodeValuesOnly: true
         });
 
-        const response = await fetch(`${this.baseUrl}${queryString}`);
+        const url = `${this.baseUrl}${queryString}`;
+        const response = await fetch(url);
+        console.info('ℹ️  CMS -> Query ', url);
         if (!response.ok) throw new Error(`[CMS] Error en findBy de ${this.endpoint}: ${response.statusText}`);
 
         const data: any = await response.json();

@@ -9,7 +9,8 @@ export class SettingsController {
 
     @APIResponse("Web page settings successfully")
     async findOne(c: Context) {
-        const response = await this.service.findOne();
+        const tenant = c.get('tenant');
+        const response = await this.service.findOne(tenant.id);
         return settingsResponseSchema.parse(response)
     }
 

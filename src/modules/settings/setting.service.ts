@@ -7,11 +7,11 @@ export class SettingService {
 
     private readonly settingRepository = new SettingCMSRepository();
 
-    async findOne() {
+    async findOne(tenantId: number) {
         const results = await new SettingFindBy(this.settingRepository).execute(
             new Criteria({
                 pagination: { page: 1, limit: 1 },
-                filters: [{ field: "id", value: 1, operator: FilterOperator.EQUAL }],
+                filters: [{ field: "tenant.id", value: tenantId, operator: FilterOperator.EQUAL }],
             }),
         );
 
